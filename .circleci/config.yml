@@ -11,7 +11,7 @@ jobs:
     steps:
       - run:
           name: Deploy via SSH
-          command: ssh vagrant@192.168.33.15 "git pull"
+          command: ssh vagrant@192.168.33.15 'git pull'
  workflows:
   version: 2
   build-and-deploy:
