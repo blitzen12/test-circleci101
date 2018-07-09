@@ -1,7 +1,6 @@
 version: 2
 jobs:
   deploy_stg:
-    working_directory: ~/var/www/test_ci
     docker:
       - image: circleci/php:7.1-jessie-node-browsers
     branches:
