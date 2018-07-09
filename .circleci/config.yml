@@ -1,8 +1,17 @@
 version: 2
 jobs:
-  build:
-    docker: # See https://docs.docker.com/get-started/#docker-concepts if you are new to Docker.
+  deploy_stg:
+    docker:
       - image: circleci/php:7.1-jessie-node-browsers
+    branches:
+      only:
+        -STG    
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run echo 'build success'
+        
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - deploy_stg
