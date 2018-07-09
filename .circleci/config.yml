@@ -4,6 +4,9 @@ jobs:
     docker:
       - image: circleci/php:7.1-jessie-node-browsers
     working_directory: ~/var/www/test_ci
+    steps:
+      - checkout
+      - run echo 'build success'
   deploy_stg:
     working_directory: ~/var/www/test_ci
     steps:
