@@ -8,7 +8,6 @@ jobs:
         - master    
     steps:
       - checkout
-      - run echo 'build success'
         
 workflows:
   version: 2
