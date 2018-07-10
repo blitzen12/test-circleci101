@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.1-jessie-node-browsers
     branches:
       only:
-        -STG    
+        - master    
     steps:
       - checkout
       - run echo 'build success'
