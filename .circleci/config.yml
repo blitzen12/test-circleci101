@@ -1,19 +1,43 @@
 version: 2
 jobs:
-  deploy_stg:
+  build:
+    working_directory: ~/var/www/test_ci
     docker:
-      - image: circleci/php:7.1-jessie-node-browsers
-    branches:
-      only:
-        -STG    
+      - image: circleci/php:7.1-jessie-node-browsers  
     steps:
       - checkout
-      - run echo 'build success'
+  deploy_stg:
+    working_directory: ~/var/www/test_ci
+    docker:
+      - image: circleci/php:7.1-jessie-node-browsers
+    steps:
+      - run: echo "STG deployed"
+  deploy_master:
+    working_directory: ~/var/www/test_ci
+    docker:
+      - image: circleci/php:7.1-jessie-node-browsers
+    steps:
+      - run: echo "master deployed"
+      
+workflow_filters: &workflow_filters
+  requires:
+    - build
+  filters:
+    branches:
+      only:
+        - master
+        - STG
         
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - deploy_stg
+      - build
+      - deploy_master:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
     
     
