@@ -17,7 +17,7 @@ jobs:
     docker:
       - image: circleci/php:7.1-jessie-node-browsers
     steps:
-      - run: echo "master deployed"
+      - run: find . -type f -iname "*.php" -print0 | xargs -0 -n1 php
       
 workflow_filters: &workflow_filters
   requires:
@@ -39,4 +39,4 @@ workflows:
           filters:
             branches:
               only: master
-        
+
