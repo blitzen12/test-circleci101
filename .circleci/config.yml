@@ -11,13 +11,13 @@ jobs:
     docker:
       - image: circleci/php:7.1-jessie-node-browsers
     steps:
-      run: echo "STG deployed"
+      - run: echo "STG deployed"
   deploy_master:
     working_directory: ~/var/www/test_ci
     docker:
       - image: circleci/php:7.1-jessie-node-browsers
     steps:
-      run: echo "master deployed"
+      - run: echo "master deployed"
       
 workflow_filters: &workflow_filters
   requires:
@@ -33,12 +33,6 @@ workflows:
   build-and-deploy:
     jobs:
       - build
-      - deploy_stg:
-          requires:
-            - build
-          filters:
-            branches:
-              only: STG
       - deploy_master:
           requires:
             - build
