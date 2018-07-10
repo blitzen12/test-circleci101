@@ -17,7 +17,15 @@ jobs:
     docker:
       - image: circleci/php:7.1-jessie-node-browsers
     steps:
-      - run: find . -type f -iname "*.php" -print0 | xargs -0 -n1 php
+      - run:
+          name: Notify Rollbar
+          command: | 
+            curl https://api.rollbar.com/api/1/deploy/ \
+            -F access_token=756960a5714a4c998e4ed291dcb02e24 \
+            -F environment=production \
+            -F revision=$CIRCLE_SHA1 \
+            -F rollbar_username=RollbarExample \
+            -F local_username=$CIRCLE_USERNAME \
       
 workflow_filters: &workflow_filters
   requires:
