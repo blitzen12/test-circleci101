@@ -25,10 +25,10 @@ jobs:
             -F environment=production \
             -F revision=$CIRCLE_SHA1 \
             -F rollbar_username=RollbarExample \
-            -F local_username=$CIRCLE_USERNAME \
-       - run:
-           name: Execute SSH
-           command: ssh -o "StrictHostKeyChecking no" vagrant@192.168.33.15 "cd ~/var/www/test_ci; git pull;"
+            -F local_username=$CIRCLE_USERNAME
+      - run:
+          name: Execute SSH
+          command: ssh -o "StrictHostKeyChecking no" vagrant@192.168.33.15 "cd ~/var/www/test_ci; git pull;"
       
 workflow_filters: &workflow_filters
   requires:
